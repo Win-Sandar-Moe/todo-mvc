@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<main role="main">
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6">
+					<form th:action="@{/save-todo}" class="p-3 border border-primary rounded" method="post">
+						<div class="mb-3">
+							<label class="form-label">Title</label>
+							<input type="text" class="form-control" name="title">
+						</div>
+						<div class="mb-3">
+							<label class="form-label"> Description</label>
+							<textarea name="description" rows="5" class="form-control"></textarea>
+						</div>
+						<input type="submit" value="Save Todo" class="btn btn-primary w-100" />
+					</form>
+				</div>
+				<div class="col-md-6">
+					<table class="table table-striped table-hover table-bordered rounded">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Title</th>
+								<th>Description</th>
+								<th>Completed</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="todo :${todos}">
+								<td th:text="${todo.id}"></td>
+								<td th:text="${todo.title}"></td>
+								<td th:text="${todo.description}"></td>
+								<td th:text="${todo.isCompleted ? 'Completed':'NotFinished'}"></td>
+							</tr>
+						</tbody>
+						
+					</table>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+
+</body>
+</html>
